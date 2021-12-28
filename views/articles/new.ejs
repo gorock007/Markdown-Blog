@@ -13,8 +13,12 @@
 </head>
 <body>
    <div class="container">
-       <h1 class="mb-4" >Markdown Blog</h1>
-       <a href="/articles/new" class="btn btn-dark">New Article</a>
+        <h1 class="mb-4">New Article</h1>
+        <form action="/articles" method="POST">
+            <%- include('form_fields') %> 
+        </form>
+
+
    </div>
     
 </body>
