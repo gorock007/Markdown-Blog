@@ -18,13 +18,11 @@
             <%= article.dateCreated.toLocaleDateString() %>
         </div>
         <a href="/" class="btn btn-dark">Home</a>
-        <a href="/articles/edit/<%= article._id %> " class="btn btn-info">Edit</a>
+        <a href="/articles/edit/<%= article.id %> " class="btn btn-info">Edit</a>
 
         <div>
-            <%= article.markdown %> 
+            <%- article.sanitizedHtml %> 
         </div>
-       
    </div>
-    
 </body>
 </html>

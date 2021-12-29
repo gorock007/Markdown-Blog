@@ -2,6 +2,7 @@ const express = require ('express');
 const mongoose = require('mongoose');
 const app = express();
 const Article = require('./models/article')
+const methodOverride = require('method-override')
 const articleRouter = require('./routes/articles')
 
 mongoose.connect('mongodb://localhost/blog',{
@@ -16,8 +17,8 @@ mongoose.connect('mongodb://localhost/blog',{
     })
 
 app.set('view engine', 'ejs')
-
 app.use(express.urlencoded({extended:false}))
+app.use(methodOverride('_method'))
 
 app.get('/', async (req, res)=>{
     const articles = await Article.find().sort({dateCreated: 'desc'})
