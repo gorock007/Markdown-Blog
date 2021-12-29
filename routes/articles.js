@@ -1,15 +1,31 @@
 const express = require('express')
 const router = express.Router()
+const Article = require('./../models/article')
 
 router.get('/new', (req, res) =>{
-    res.render('articles/new')
+    res.render('articles/new', {article: new Article()})
 })
 
-router.post('/', (req, res) =>{
-    
+router.get('/:id', async (req, res) =>{
+    const{id} = req.params
+    const article = await Article.findById(id)
+    if(article == null) res.redirect('/')
+    res.render('articles/show', {article})
 })
 
+router.post('/', async (req, res) =>{
+    let article = new Article({
+        title: req.body.title,
+        description: req.body.description,
+        markdown: req.body.markdown
+    })
+    try{
+        article = await article.save();
+        res.redirect(`/articles/${article._id}`)
+    } catch (e){
+        console.log(e)
+       res.render('articles/new', {article})
+    }
 
-
+})
 module.exports = router
-router.get('/')
