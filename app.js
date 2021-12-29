@@ -4,7 +4,9 @@ const app = express();
 const Article = require('./models/article')
 const articleRouter = require('./routes/articles')
 
-mongoose.connect('mongodb://localhost:27017/blog')
+mongoose.connect('mongodb://localhost/blog',{
+    useNewUrlParser:true, useUnifiedTopology:true
+})
     .then(() =>{
         console.log("MongoDb Connected!!")
     })
