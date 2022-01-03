@@ -27,7 +27,21 @@ router.post('/', async (req, res) =>{
     } catch (e){
         console.log(e)
        res.render('articles/new', {article})
-    }
+    } 
+})
+
+//EDIT ROUTE
+router.get('/edit/:id', async (req, res) =>{
+    const article = await Article.findById(req.params.id)
+    res.render('articles/edit', {article})
+
+})
+
+//PUT ROUTE FOR EDIT
+router.put('/:slug', async (req, res) =>{
+    const article = await Article.findByIdAndUpdate(req.params.slug, req.body, {runValidators:true, new:true})
+    res.redirect(`/articles/${article.slug}`)
+
 })
 
 //DELETE ROUTE

@@ -9,7 +9,7 @@
     rel="stylesheet"integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
     crossorigin="anonymous">
 
-    <title>Blog</title>
+    <title>Markdown Blog</title>
 </head>
 <body>
    <div class="container">
@@ -28,6 +28,7 @@
                         <%= article.description %> 
                     </div>
                     <a href="articles/<%= article.slug %>" class="btn btn-info">Read More</a>
+                    <a href="articles/edit/<%= article.id %>" class="btn btn-secondary">Edit</a>
                     <form class="d-inline" action="/articles/<%= article.id %>?_method=DELETE " method="POST">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
